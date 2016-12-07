@@ -116,7 +116,12 @@ namespace SpravkaDD
         {
             this.Frame.Navigate(typeof(RegForm));
 
-        } 
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(AvtorizForm));
+        }
     }
     
 
