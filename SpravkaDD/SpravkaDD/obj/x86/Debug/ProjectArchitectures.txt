@@ -1,1 +1,1 @@
-C:\Users\User\Desktop\SpravkaDD-master (саша бедакурил)\SpravkaDD\SpravkaDD\SpravkaDD.csproj;x86
+E:\GitHub\SpravkaDD\SpravkaDD\SpravkaDD\SpravkaDD.csproj;x86

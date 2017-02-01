@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="SpravkaDD_DataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="SpravkaDD_DataModelTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="SpravkaDD_DataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="SpravkaDD_DataModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PersonsSet" EntityType="SpravkaDD_DataModel.Persons" />
+          <EntitySet Name="raionSet" EntityType="SpravkaDD_DataModel.raion" />
+          <AssociationSet Name="raionPersons" Association="SpravkaDD_DataModel.raionPersons">
+            <End Role="raion" EntitySet="raionSet" />
+            <End Role="Persons" EntitySet="PersonsSet" />
+          </AssociationSet>
+          <EntitySet Name="ObjectSet" EntityType="SpravkaDD_DataModel.Object" />
+          <AssociationSet Name="Objectraion" Association="SpravkaDD_DataModel.Objectraion">
+            <End Role="Object" EntitySet="ObjectSet" />
+            <End Role="raion" EntitySet="raionSet" />
+          </AssociationSet>
+          <EntitySet Name="CategorySet" EntityType="SpravkaDD_DataModel.Category" />
+          <AssociationSet Name="CategoryObject" Association="SpravkaDD_DataModel.CategoryObject">
+            <End Role="Category" EntitySet="CategorySet" />
+            <End Role="Object" EntitySet="ObjectSet" />
+          </AssociationSet>
+          <EntitySet Name="SubCategorySet" EntityType="SpravkaDD_DataModel.SubCategory" />
+          <AssociationSet Name="SubCategoryObject" Association="SpravkaDD_DataModel.SubCategoryObject">
+            <End Role="SubCategory" EntitySet="SubCategorySet" />
+            <End Role="Object" EntitySet="ObjectSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Persons">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="raion" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" Nullable="false" />
+          <Property Name="pass" Type="String" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" />
+          <Property Name="fam" Type="String" Nullable="false" />
+          <Property Name="raion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="raion1" Relationship="SpravkaDD_DataModel.raionPersons" FromRole="Persons" ToRole="raion" />
+        </EntityType>
+        <EntityType Name="raion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Persons" Relationship="SpravkaDD_DataModel.raionPersons" FromRole="raion" ToRole="Persons" />
+          <NavigationProperty Name="Object" Relationship="SpravkaDD_DataModel.Objectraion" FromRole="raion" ToRole="Object" />
+        </EntityType>
+        <Association Name="raionPersons">
+          <End Type="SpravkaDD_DataModel.raion" Role="raion" Multiplicity="1" />
+          <End Type="SpravkaDD_DataModel.Persons" Role="Persons" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Object">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Category" />
+            <PropertyRef Name="Subcategory" />
+            <PropertyRef Name="raion" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="Int32" Nullable="false" />
+          <Property Name="Subcategory" Type="Int32" Nullable="false" />
+          <Property Name="naimenovanie" Type="String" Nullable="false" />
+          <Property Name="adres" Type="String" Nullable="false" />
+          <Property Name="telephone" Type="String" Nullable="false" />
+          <Property Name="raion" Type="Int32" Nullable="false" />
+          <Property Name="info" Type="String" Nullable="false" />
+          <NavigationProperty Name="raion1" Relationship="SpravkaDD_DataModel.Objectraion" FromRole="Object" ToRole="raion" />
+          <NavigationProperty Name="Category1" Relationship="SpravkaDD_DataModel.CategoryObject" FromRole="Object" ToRole="Category" />
+          <NavigationProperty Name="SubCategory" Relationship="SpravkaDD_DataModel.SubCategoryObject" FromRole="Object" ToRole="SubCategory" />
+        </EntityType>
+        <Association Name="Objectraion">
+          <End Type="SpravkaDD_DataModel.Object" Role="Object" Multiplicity="1" />
+          <End Type="SpravkaDD_DataModel.raion" Role="raion" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="category" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="category" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Object" Relationship="SpravkaDD_DataModel.CategoryObject" FromRole="Category" ToRole="Object" />
+        </EntityType>
+        <Association Name="CategoryObject">
+          <End Type="SpravkaDD_DataModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="SpravkaDD_DataModel.Object" Role="Object" Multiplicity="*" />
+        </Association>
+        <EntityType Name="SubCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="subcategory" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="subcategory" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Object" Relationship="SpravkaDD_DataModel.SubCategoryObject" FromRole="SubCategory" ToRole="Object" />
+        </EntityType>
+        <Association Name="SubCategoryObject">
+          <End Type="SpravkaDD_DataModel.SubCategory" Role="SubCategory" Multiplicity="1" />
+          <End Type="SpravkaDD_DataModel.Object" Role="Object" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="SpravkaDD_DataModel" />
+        <Alias Key="Target" Value="SpravkaDD_DataModel.Store" />
+        <EntityContainerMapping CdmEntityContainer="SpravkaDD_DataModelContainer" StorageEntityContainer="SpravkaDD_DataModelTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

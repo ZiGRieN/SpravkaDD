@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="68979b4b12b04baaa5c8e8b6f5f4357c" Name="Diagram1" >
+        <EntityTypeShape EntityType="SpravkaDD_DataModel.Persons" Width="1.5" PointX="3.25" PointY="1.75" />
+        <EntityTypeShape EntityType="SpravkaDD_DataModel.raion" Width="1.5" PointX="6.25" PointY="2.125" />
+        <AssociationConnector Association="SpravkaDD_DataModel.raionPersons" />
+        <EntityTypeShape EntityType="SpravkaDD_DataModel.Object" Width="1.5" PointX="5.875" PointY="4.125" />
+        <AssociationConnector Association="SpravkaDD_DataModel.Objectraion" />
+        <EntityTypeShape EntityType="SpravkaDD_DataModel.Category" Width="1.5" PointX="2" PointY="5" />
+        <AssociationConnector Association="SpravkaDD_DataModel.CategoryObject" />
+        <EntityTypeShape EntityType="SpravkaDD_DataModel.SubCategory" Width="1.5" PointX="8.75" PointY="4.375" />
+        <AssociationConnector Association="SpravkaDD_DataModel.SubCategoryObject" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

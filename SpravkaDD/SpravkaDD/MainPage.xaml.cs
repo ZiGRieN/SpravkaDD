@@ -69,7 +69,7 @@ namespace SpravkaDD
                     person.pass = (string)statement[2];
                     person.imya = (string)statement[3];
                     person.familia = (string)statement[4];
-
+                    person.raion = (int)statement[5];
                     coll.Add(person);
                 }
                 
@@ -81,6 +81,8 @@ namespace SpravkaDD
 
     public class Person
     {
+        public int raion { get; set; }
+
         public long Id { get; set; }
         public string log_in { get; set; }
         public string pass { get; set; }
