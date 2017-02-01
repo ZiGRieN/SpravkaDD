@@ -549,3 +549,7 @@ namespace SpravkaDD.SpravkaDD_XamlTypeInfo
 }
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of e307739... v1.006
